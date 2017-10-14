@@ -2,13 +2,7 @@ import React, {Component} from 'react'
 import Card from '../Home/Components/card'
 import withSideNav from '../../hoc/withSideNav'
 import {db} from '../../fire'
-
-var starCountRef = db.ref('cards')
-starCountRef.on('value', function (snapshot) {
-  snapshot.forEach((child) => {
-    // console.log(child.val())
-  })
-})
+import CircularProgress from 'material-ui/CircularProgress'
 
 class Home extends Component {
   constructor (props) {
@@ -17,36 +11,30 @@ class Home extends Component {
     }
   }
 
-  async componentDidMount () {
-    await db.ref(`cards/card01`).once('value').then((snapshot) => {
-      let ref4 = snapshot.child('title').val()
-      // this.setState({ref4})
-    })
-
-    await db.ref('cards').on('value', (snapshot) => {
+  async componentWillMount () {
+    await db.ref('projects').on('value', (snapshot) => {
       // create the basic state
-      // this.setState({cards})
       this.state = {
-        cards: ['']
+        cards: null
       }
-      const newArray = this.state.cards.slice(1)
+      const newArray = []
       snapshot.forEach((child) => {
-        let arrayDone = child.val()
+        let arrayDone = child.val().project
         newArray.push(arrayDone)
         this.setState({cards: newArray})
       })
-      console.log(this.state.cards)
+      // console.log(this.state.cards)
     })
   }
+
   render () {
-    let {ref4, ref5} = this.state
     return (
       <div style={{display: 'flex', height: '100%', marginLeft: '30px', flexWrap: 'wrap', justifyContent: 'space-evenly', marginTop: '20px'}}>
-
-        { this.state.cards ? (this.state.cards.map((elements, key) => (<Card key={key} />))) : (<span>Loading</span>)
+        { this.state.cards
+          ? (this.state.cards.map((elements, key) => (<Card key={key} stateOfFire={this.state.cards[key]} />)))
+          : (<CircularProgress size={80} thickness={5} />)
         }
       </div>
-
     )
   }
 }

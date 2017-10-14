@@ -6,26 +6,30 @@ import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
 import StarBorder from 'material-ui/svg-icons/toggle/star-border'
 import Dialog from 'material-ui/Dialog'
+import CircularProgress from 'material-ui/CircularProgress'
 
 class CardComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      open: false
+      // open: false
     }
   }
   handleOpen = () => {
     console.log('helo')
-    this.setState({open: !this.state.open})
+    this.setState({active: !this.state.active})
   }
+
   render () {
+    let {stateOfFire} = this.props
+    console.log(stateOfFire)
     return (
-      this.state.open ? (
+      stateOfFire.active ? (
         <Dialog
           title='Dialog With Actions'
           // actions={actions}
           modal={false}
-          open={this.state.open}
+          open={stateOfFire.active}
           onRequestClose={this.handleOpen}
         >
           <br />
@@ -68,22 +72,20 @@ class CardComponent extends Component {
         </Dialog>
 
       ) : (
-        <Card style={{ width: '300px', height: '300px' }} onExpandChange={this.handleOpen}>
+        <Card style={{ width: '300px', height: '300px' }} onExpandChange={this.handleOpen} >
           <CardHeader
-            title='Without Avatar'
-            subtitle='Subtitle'
+            title={stateOfFire.title}
             actAsExpander
             showExpandableButton
           />
-          <CardActions>
-            <FlatButton label='Action1' />
-            <FlatButton label='Action2' />
-          </CardActions>
-          <CardText expandable>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          <CardText >
+            <ul>
+              {
+                stateOfFire.notes
+                  ? stateOfFire.notes.map((element, key) => (<li key={key}>{element.note.title}</li>))
+                  : (<CircularProgress size={80} thickness={5} />)
+              }
+            </ul>
           </CardText>
         </Card>
       )
