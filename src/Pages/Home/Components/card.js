@@ -12,14 +12,16 @@ class CardComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      // open: false
+      gone: false
     }
   }
   handleOpen = () => {
     console.log('helo')
     this.setState({active: !this.state.active})
   }
-
+  componentDidMount () {
+    setInterval(() => this.setState({gone: true}), 5000)
+  }
   render () {
     let {stateOfFire} = this.props
     console.log(stateOfFire)
@@ -83,7 +85,9 @@ class CardComponent extends Component {
               {
                 stateOfFire.notes
                   ? stateOfFire.notes.map((element, key) => (<li key={key}>{element.note.title}</li>))
-                  : (<CircularProgress size={80} thickness={5} />)
+                  : this.state.gone ? (<div>Notes not found</div>)
+                    : (<CircularProgress size={80} thickness={5} />)
+
               }
             </ul>
           </CardText>

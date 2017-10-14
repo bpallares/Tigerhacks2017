@@ -12,7 +12,7 @@ class Home extends Component {
   }
 
   async componentWillMount () {
-    await db.ref('projects').on('value', (snapshot) => {
+    await db.ref('projects/projects').on('value', (snapshot) => {
       // create the basic state
       this.state = {
         cards: null
