@@ -5,7 +5,7 @@ import withSideNav from '../../hoc/withSideNav'
 class Home extends Component {
   render () {
     return (
-      <div style={{display: 'flex', height: '100%', marginLeft: '30px', flexWrap: 'wrap', justifyContent: 'space-evenly'}}>
+      <div style={{display: 'flex', height: '100%', marginLeft: '30px', flexWrap: 'wrap', justifyContent: 'space-evenly', marginTop: '20px'}}>
         <Card />
         <Card />
         <Card />
@@ -14,7 +14,6 @@ class Home extends Component {
         <Card />
         <Card />
         <Card />
-
       </div>
 
     )

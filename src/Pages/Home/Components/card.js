@@ -5,6 +5,7 @@ import {GridList, GridTile} from 'material-ui/GridList'
 import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
 import StarBorder from 'material-ui/svg-icons/toggle/star-border'
+import Dialog from 'material-ui/Dialog'
 
 class CardComponent extends Component {
   constructor (props) {
@@ -20,24 +21,52 @@ class CardComponent extends Component {
   render () {
     return (
       this.state.open ? (
-        <Card style={{ width: '500px', height: '300px' }} onExpandChange={this.handleOpen}>
-          <CardHeader
-            title='Without Avatar'
-            subtitle='Subtitle'
-            actAsExpander
-            showExpandableButton
-          />
-          <CardActions>
-            <FlatButton label='Action1' />
-            <FlatButton label='Action2' />
-          </CardActions>
-          <CardText expandable>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-          </CardText>
-        </Card>
+        <Dialog
+          title='Dialog With Actions'
+          // actions={actions}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleOpen}
+        >
+          <br />
+          <Card style={{ width: '500px', height: '300px' }}>
+            <CardHeader
+              title='Without Avatar'
+              subtitle='Subtitle'
+              actAsExpander
+              showExpandableButton
+            />
+            <CardActions>
+              <FlatButton label='Action1' />
+              <FlatButton label='Action2' />
+            </CardActions>
+            <CardText expandable>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            </CardText>
+          </Card>
+          <Card style={{ width: '500px', height: '300px' }}>
+            <CardHeader
+              title='Without Avatar'
+              subtitle='Subtitle'
+              actAsExpander
+              showExpandableButton
+            />
+            <CardActions>
+              <FlatButton label='Action1' />
+              <FlatButton label='Action2' />
+            </CardActions>
+            <CardText expandable>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            </CardText>
+          </Card>
+        </Dialog>
+
       ) : (
         <Card style={{ width: '300px', height: '300px' }} onExpandChange={this.handleOpen}>
           <CardHeader
