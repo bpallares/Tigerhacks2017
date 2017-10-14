@@ -7,10 +7,12 @@
     "babel-install": "^2.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "firebase": "^4.5.1",
+    "material-ui": "^0.19.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
-    "styled-components": "^2.1.2"    
+    "styled-components": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
