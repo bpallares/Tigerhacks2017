@@ -29,7 +29,7 @@ class Home extends Component {
 
   render () {
     return (
-      <div style={{display: 'flex', height: '100%', marginLeft: '30px', flexWrap: 'wrap', justifyContent: 'space-evenly', marginTop: '20px'}}>
+      <div style={{display: 'flex', height: '100%', marginLeft: '30px', flexWrap: 'wrap', justifyContent: 'space-around', marginTop: '20px'}}>
         { this.state.cards
           ? (this.state.cards.map((elements, key) => (<Card key={key} stateOfFire={this.state.cards[key]} />)))
           : (<CircularProgress size={80} thickness={5} />)
