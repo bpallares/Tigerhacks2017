@@ -6,4 +6,6 @@ var config = { /* COPY THE ACTUAL CONFIG FROM FIREBASE CONSOLE */
   storageBucket: 'dictate-244d5'
 }
 const fire = firebase.initializeApp(config)
+export const db = firebase.database()
+
 export default fire

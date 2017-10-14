@@ -15,7 +15,7 @@ const style = {
 const MenuExampleSimple = () => (
   <Paper style={style}>
     <Menu style={style}>
-      <MenuItem primaryText='Cards' style={{color: 'white'}} />
+      <MenuItem primaryText='Note Cards' style={{color: 'white'}} />
       <MenuItem primaryText='Analyse' style={{color: 'white'}} />
       <MenuItem primaryText='Settings' style={{color: 'white'}} />
     </Menu>
