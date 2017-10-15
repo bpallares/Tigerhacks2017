@@ -12,7 +12,7 @@ class Home extends Component {
   }
 
   async componentWillMount () {
-    await db.ref('projects/projects').on('value', (snapshot) => {
+    await db.ref('projects/').on('value', (snapshot) => {
       // create the basic state
       this.state = {
         cards: null
@@ -20,6 +20,7 @@ class Home extends Component {
       const newArray = []
       snapshot.forEach((child) => {
         let arrayDone = child.val().project
+        arrayDone['key'] = child.key
         newArray.push(arrayDone)
         this.setState({cards: newArray})
       })
