@@ -16,14 +16,14 @@ class CardComponent extends Component {
     }
   }
   handleOpen = () => {
-    console.log('helo')
+    // console.log('helo')
     fire.database().ref('projects/' + saver.key).update({
       active: !this.state.active
     }).then(() => {
       this.setState({active: !this.state.active})
     }
     )
-    console.log(this.state.active)
+    // console.log(this.state.active)
   }
   componentWillMount () {
     let {stateOfFire} = this.props
@@ -34,7 +34,7 @@ class CardComponent extends Component {
   }
   render () {
     let {stateOfFire} = this.props
-    console.log(saver.notes)
+    // console.log(saver.notes)
     return (
       this.state.active ? (
         <Dialog
@@ -46,15 +46,20 @@ class CardComponent extends Component {
           onRequestClose={this.handleOpen}
         >
           <br />
-          <Card style={{ width: '900px', height: '500px', display: 'flex', alignItems: 'center', overflowY: 'scroll' }}>
+          <Card style={{ width: '900px', height: '500px', display: 'flex', overflowY: 'scroll' }}>
 
             <CardText>
-              <CardTitle>Note 1</CardTitle>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sem at ipsum consequat consequat vel ac risus. Integer aliquet maximus sem, sed porttitor enim malesuada a. Aenean sit amet diam vel tellus eleifend suscipit. Fusce vitae lacus sit amet purus mattis vulputate sed a leo. Sed tincidunt diam lorem. Suspendisse euismod sodales tortor, sit amet luctus lorem aliquam id. Curabitur tincidunt porttitor augue eget pretium. Cras eget lectus vel enim commodo condimentum at eu tortor. Nunc venenatis ante felis, in fermentum tortor consectetur elementum. Nunc aliquam convallis tortor eget eleifend. Sed id laoreet nisl. Nam in rutrum quam, ut imperdiet risus. Vivamus ac sodales dolor.
-            </CardText>
-            <CardText>
-              <CardTitle>Note 2</CardTitle>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sem at ipsum consequat consequat vel ac risus. Integer aliquet maximus sem, sed porttitor enim malesuada a. Aenean sit amet diam vel tellus eleifend suscipit. Fusce vitae lacus sit amet purus mattis vulputate sed a leo. Sed tincidunt diam lorem. Suspendisse euismod sodales tortor, sit amet luctus lorem aliquam id. Curabitur tincidunt porttitor augue eget pretium. Cras eget lectus vel enim commodo condimentum at eu tortor. Nunc venenatis ante felis, in fermentum tortor consectetur elementum. Nunc aliquam convallis tortor eget eleifend. Sed id laoreet nisl. Nam in rutrum quam, ut imperdiet risus. Vivamus ac sodales dolor.
+              { stateOfFire.notes
+                ? stateOfFire.notes.map((element, key) => (
+                  <span>
+                    <h1>Note</h1>
+                    <CardTitle>{<h4>Title</h4>}..{element.title}</CardTitle>
+                    <CardText>{<h4>Body</h4>}{element.body}</CardText>
+                  </span>
+                ))
+                : this.state.gone ? (<div>There are no notes yet</div>)
+                  : (<CircularProgress size={80} thickness={5} />)
+              }
             </CardText>
 
           </Card>
@@ -68,6 +73,7 @@ class CardComponent extends Component {
           />
           <Card>
             <CardText>
+              <h1>Notes</h1>
               <ul>
                 {
                   /*
@@ -83,11 +89,13 @@ class CardComponent extends Component {
                     : (<h1>ww</h1>) */
 
                   // getItem()
+                  // console.log(stateOfFire.notes[0].body)
+                  stateOfFire.notes
+                    ? stateOfFire.notes.map((element, key) => (<li key={key}>{element.body}</li>))
+                    : this.state.gone ? (<div>There are no notes yet</div>)
+                      : (<CircularProgress size={80} thickness={5} />)
+
                 }
-              </ul>
-              <ul>
-                <li>Note 1 </li>
-                <li>Note 2 </li>
               </ul>
             </CardText>
           </Card>
