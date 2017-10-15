@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import {Card, CardHeader, CardText} from 'material-ui/Card'
+import {Card, CardHeader, CardText, CardTitle} from 'material-ui/Card'
 import Dialog from 'material-ui/Dialog'
+import TextField from 'material-ui/TextField'
+
 import CircularProgress from 'material-ui/CircularProgress'
 
 class CardComponent extends Component {
@@ -23,7 +25,7 @@ class CardComponent extends Component {
     return (
       stateOfFire.active ? (
         <Dialog
-          title='Dialog With Actions'
+          title={stateOfFire.title}
           // actions={actions}
           contentStyle={{display: 'flex', width: '90vmax', justifyContent: ' center'}}
           modal={false}
@@ -31,19 +33,25 @@ class CardComponent extends Component {
           onRequestClose={this.handleOpen}
         >
           <br />
-          <Card style={{ width: '900px', height: '500px' }}>
-            <CardHeader
-              title='Without Avatar'
-              subtitle='Subtitle'
-              actAsExpander
-              showExpandableButton
-            />
-            <CardText expandable>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-            </CardText>
+          <Card style={{ width: '900px', height: '500px', display: 'flex', alignItems: 'center' }}>
+
+            {
+              stateOfFire.notes
+                ? stateOfFire.notes.map((element, key) => (
+                  <Card key={key} style={{width: '400px', display: 'flex'}} >
+                    <CardTitle >{element.note.title}
+                      <CardText>
+                        <TextField defaultValue={element.note.body} multiLine />
+                      </CardText>
+                    </CardTitle>
+                  </Card>)
+                )
+                : this.state.gone
+                  ? (<div>text</div>)
+                  : (<CircularProgress size={80} thickness={5} />)
+
+            }
+
           </Card>
         </Dialog>
 
@@ -54,17 +62,19 @@ class CardComponent extends Component {
             actAsExpander
             showExpandableButton
           />
-          <CardText >
-            <ul>
-              {
-                stateOfFire.notes
-                  ? stateOfFire.notes.map((element, key) => (<li key={key}>{element.note.title}</li>))
-                  : this.state.gone ? (<div>Notes not found</div>)
-                    : (<CircularProgress size={80} thickness={5} />)
+          <Card>
+            <CardText>
+              <ul>
+                {
+                  stateOfFire.notes
+                    ? stateOfFire.notes.map((element, key) => (<li key={key}>{element.note.title}</li>))
+                    : this.state.gone ? (<div>There are no notes yet</div>)
+                      : (<CircularProgress size={80} thickness={5} />)
 
-              }
-            </ul>
-          </CardText>
+                }
+              </ul>
+            </CardText>
+          </Card>
         </Card>
       )
     )
