@@ -33,12 +33,12 @@ class CardComponent extends Component {
           onRequestClose={this.handleOpen}
         >
           <br />
-          <Card style={{ width: '900px', height: '500px', display: 'flex', alignItems: 'center' }}>
+          <Card style={{ width: '900px', height: '500px', display: 'flex', alignItems: 'center', overflowY: 'scroll' }}>
 
             {
               stateOfFire.notes
                 ? stateOfFire.notes.map((element, key) => (
-                  <Card key={key} style={{width: '400px', display: 'flex'}} >
+                  <Card key={key} style={{width: '350px', display: 'flex', marginTop: '5%' }} >
                     <CardTitle >{element.note.title}
                       <CardText>
                         <TextField defaultValue={element.note.body} multiLine />
