@@ -49,7 +49,12 @@ class CardComponent extends Component {
           <Card style={{ width: '900px', height: '500px', display: 'flex', alignItems: 'center', overflowY: 'scroll' }}>
 
             <CardText>
-           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sem at ipsum consequat consequat vel ac risus. Integer aliquet maximus sem, sed porttitor enim malesuada a. Aenean sit amet diam vel tellus eleifend suscipit. Fusce vitae lacus sit amet purus mattis vulputate sed a leo. Sed tincidunt diam lorem. Suspendisse euismod sodales tortor, sit amet luctus lorem aliquam id. Curabitur tincidunt porttitor augue eget pretium. Cras eget lectus vel enim commodo condimentum at eu tortor. Nunc venenatis ante felis, in fermentum tortor consectetur elementum. Nunc aliquam convallis tortor eget eleifend. Sed id laoreet nisl. Nam in rutrum quam, ut imperdiet risus. Vivamus ac sodales dolor.
+              <CardTitle>Note 1</CardTitle>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sem at ipsum consequat consequat vel ac risus. Integer aliquet maximus sem, sed porttitor enim malesuada a. Aenean sit amet diam vel tellus eleifend suscipit. Fusce vitae lacus sit amet purus mattis vulputate sed a leo. Sed tincidunt diam lorem. Suspendisse euismod sodales tortor, sit amet luctus lorem aliquam id. Curabitur tincidunt porttitor augue eget pretium. Cras eget lectus vel enim commodo condimentum at eu tortor. Nunc venenatis ante felis, in fermentum tortor consectetur elementum. Nunc aliquam convallis tortor eget eleifend. Sed id laoreet nisl. Nam in rutrum quam, ut imperdiet risus. Vivamus ac sodales dolor.
+            </CardText>
+            <CardText>
+              <CardTitle>Note 2</CardTitle>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sem at ipsum consequat consequat vel ac risus. Integer aliquet maximus sem, sed porttitor enim malesuada a. Aenean sit amet diam vel tellus eleifend suscipit. Fusce vitae lacus sit amet purus mattis vulputate sed a leo. Sed tincidunt diam lorem. Suspendisse euismod sodales tortor, sit amet luctus lorem aliquam id. Curabitur tincidunt porttitor augue eget pretium. Cras eget lectus vel enim commodo condimentum at eu tortor. Nunc venenatis ante felis, in fermentum tortor consectetur elementum. Nunc aliquam convallis tortor eget eleifend. Sed id laoreet nisl. Nam in rutrum quam, ut imperdiet risus. Vivamus ac sodales dolor.
             </CardText>
 
           </Card>
@@ -58,9 +63,8 @@ class CardComponent extends Component {
       ) : (
         <Card style={{ width: '600px', height: '400px', margin: '40px,40px,40px,40px', marginRight: '40px', marginBottom: '30px' }} onExpandChange={this.handleOpen} >
           <CardHeader
-            title={'Idea: ' + stateOfFire.title}
+            title={stateOfFire.title}
             actAsExpander
-            showExpandableButton
           />
           <Card>
             <CardText>
